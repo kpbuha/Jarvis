@@ -469,15 +469,15 @@ class MainThread(QThread):
                 speak("sir what should i send?")
                 msg = self.takeCommand().lower()
                 from twilio.rest import Client
-                account_sid = "AC7b129274e0e0e767a2bf07307c433863"
-                auth_token = "0d50a084ff48a5d7312f00cce9a9e1ef"
+                account_sid ="twilio_account_sid"
+                auth_token = "twilio_account_auth_token"
                 client = Client(account_sid, auth_token)
 
                 message = client.messages \
                     .create(
                         body=msg,
-                        from_='+19384441823',
-                        to='+916353736884'
+                        from_='twilio_account_number',
+                        to='your_number'
                     )
 
                 print(message.sid)
@@ -486,15 +486,15 @@ class MainThread(QThread):
                 speak("sir what should i tell on a call?")
                 msg = self.takeCommand().lower()
                 from twilio.rest import Client
-                account_sid = "AC7b129274e0e0e767a2bf07307c433863"
-                auth_token = "0d50a084ff48a5d7312f00cce9a9e1ef"
+                account_sid = "twilio_account_sid"
+                auth_token = "twilio_auth_token"
                 client = Client(account_sid, auth_token)
 
                 message = client.calls \
                     .create(
                         twiml="f'<Response><Say>{msg}</Say></Response>'",
-                        from_='+19384441823',
-                        to='+916353736884'
+                        from_='twilio_account_number',
+                        to='your_number'
                     )
 
                 print(message.sid)
